@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class BankApp {
     public static void main(String[] args) {
-        BankAccount objectOne = new BankAccount("Customer" , "BA001");
+        BankAccount objectOne = new BankAccount();
         objectOne.showMenu();
     }
 }
@@ -15,9 +15,10 @@ class BankAccount{
     String customerName;
     String customerId;
 
-    BankAccount(String cName ,String cid){
-        customerName=cName;
-        customerId=cid;
+    BankAccount(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter your name : ");
+        customerName= scanner.next();
     }
 
     void deposit(int amount){
@@ -36,7 +37,7 @@ class BankAccount{
         if (previousTransaction > 0) {
             System.out.println("Deposited :" + previousTransaction);
         } else if (previousTransaction < 0) {
-            System.out.println("Withdrawn :" + previousTransaction);
+            System.out.println("Withdrawn :" + Math.abs(previousTransaction));
         }
         else{
             System.out.println("No Transactions occured!");
@@ -45,24 +46,17 @@ class BankAccount{
     void showMenu(){
         char option;
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Welcome" + " " + customerName);
-        System.out.println("Your ID :" + customerId);
-        System.out.println('\n');
-
-
+        System.out.println("Welcome Mr." + " " + customerName);
         do {
             System.out.println("A. Check Balance");
             System.out.println("B. Withdraw");
             System.out.println("C. Deposit");
             System.out.println("D. Previous Transactions");
             System.out.println("E. Exit Application");
-            System.out.println("\n");
             System.out.println("__________________________________________");
             System.out.println("Enter an option!");
             System.out.println("__________________________________________");
             option = scanner.next().charAt(0);
-            System.out.println("\n");
 
             switch (option) {
                 case 'A' -> {
